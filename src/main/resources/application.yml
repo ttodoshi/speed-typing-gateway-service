@@ -1,0 +1,17 @@
+server:
+  port: 8443
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    consul:
+      discovery:
+        enabled: true
+      host: ${spring.cloud.consul.host}
+      port: ${spring.cloud.consul.port}
+    gateway:
+      routes:
+        - id: text-service
+          uri: lb://text-service
+          predicates:
+            - Path=/api/v1/texts/**
