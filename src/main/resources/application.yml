@@ -7,8 +7,8 @@ spring:
     consul:
       discovery:
         enabled: true
-      host: ${spring.cloud.consul.host}
-      port: ${spring.cloud.consul.port}
+      host: localhost
+      port: 8500
     gateway:
       routes:
         - id: text-service
@@ -19,3 +19,7 @@ spring:
           uri: lb://auth-service
           predicates:
             - Path=/api/v1/auth/**
+        - id: result-service
+          uri: lb://result-service
+          predicates:
+            - Path=/api/v1/results/**
